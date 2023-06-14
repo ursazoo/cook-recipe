@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import BaseSignInModal from "@/components/BaseSignInModal.vue";
+import BaseLayout from "@/layout/BaseLayout.vue";
 </script>
 
 <template>
-  <RouterView />
+  <BaseLayout>
+    <RouterView />
+  </BaseLayout>
   <BaseSignInModal />
 </template>
 
