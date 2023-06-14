@@ -19,7 +19,7 @@ import BaseFooter from "@/components/BaseFooter.vue";
   min-height: 100vh;
   padding-top: 100px;
   padding-bottom: 380px;
-  background-image: url('@/assets/shared/background.webp');
+  background-image: url('@/assets/images/shared/background.webp');
   background-repeat: repeat;
   background-size: 10%;
   backdrop-filter: blur(2px);
