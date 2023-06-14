@@ -1,7 +1,7 @@
 <template>
   <main>
     <a-button type="primary" @click="modalStore.isSignInModalShow = true">一个按钮</a-button>
-    <a-button type="primary" @click="router.push('/about')">测试按钮</a-button>
+    <a-button type="primary" @click="router.push('/about')">按钮</a-button>
   </main>
 </template>
 
