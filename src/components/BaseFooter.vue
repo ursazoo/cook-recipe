@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="copyright">Copyright © ursazoo. 保留所有權利</div>
-      <img alt="foot-image" class="foot-image" src="@/assets/shared/foot.png" />
+      <img alt="foot-image" class="foot-image" src="@/assets/images/shared/foot.png" />
     </div>
   </div>
 </template>
