@@ -14,9 +14,11 @@ declare module 'vue' {
     AModal: typeof import('@arco-design/web-vue')['Modal']
     BaseFooter: typeof import('./src/components/BaseFooter.vue')['default']
     BaseHeader: typeof import('./src/components/BaseHeader.vue')['default']
+    BaseLabel: typeof import('./src/components/BaseLabel.vue')['default']
     BaseSearch: typeof import('./src/components/BaseSearch.vue')['default']
     BaseSignInModal: typeof import('./src/components/BaseSignInModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgView: typeof import('./src/components/SvgView.vue')['default']
   }
 }

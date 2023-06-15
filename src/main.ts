@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import 'virtual:svg-icons-register'
+
 import ArcoVueIcon from '@arco-design/web-vue/es/icon';
 
 import App from './App.vue'

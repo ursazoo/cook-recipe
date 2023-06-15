@@ -1,8 +1,9 @@
 import { fileURLToPath, URL } from 'node:url'
-import { resolve } from "path";
+import path from 'path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -21,6 +22,15 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    createSvgIconsPlugin({
+      // Specify the icon folder to be cached
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+      // Specify symbolId format
+      symbolId: 'icon-[dir]-[name]',
+      inject: 'body-last',
+      customDomId: '__svg__icons__dom__',
+    }),
+
     AutoImport({
       resolvers: [ArcoResolver()]
     }),
