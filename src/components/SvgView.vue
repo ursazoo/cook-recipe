@@ -1,31 +1,19 @@
 <template>
   <svg aria-hidden="true">
-    <use :href="symbolId" :fill="color" />
+    <use :href="symbolId" :fill="props?.color || '#333'" />
   </svg>
 </template>
 
-<script>
-import { defineComponent, computed } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
 
-export default defineComponent({
-  name: 'SvgView',
-  props: {
-    prefix: {
-      type: String,
-      default: 'icon',
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    color: {
-      type: String,
-      default: '#333',
-    },
-  },
-  setup(props) {
-    const symbolId = computed(() => `#${props.prefix}-${props.name}`)
-    return { symbolId }
-  },
-})
+interface  IProps {
+  prefix?: string;
+  color?: string;
+  name: string;
+}
+
+const props = defineProps<IProps>()
+
+const symbolId = computed(() => `#${props.prefix || 'icon'}-${props.name}`)
 </script>

@@ -26,7 +26,7 @@
       <div class="search-result-header">
         <div class="search-result-title">搜索历史</div>
         <div class="search-result-title pointer" @click="handleClearHistory">
-          <icon-delete />清除全部</div>
+          <icon-delete class="delete-icon"/>清除全部</div>
       </div>
       <div class="search-result-content">
         <div
@@ -283,16 +283,21 @@ function handleClearHistory() {
           color: crimson;
           fill: crimson;
         }
-
-        .close-icon {
-          margin-right: 5px;
-          transition: .2s linear all;
-          &:hover {
-            color: crimson;
-            fill: crimson;
-          }
-        }
       }
+    }
+  }
+
+  .delete-icon {
+    margin-right: 5px;
+    transition: .2s linear all;
+  }
+
+  .close-icon {
+    margin-right: 5px;
+    transition: .2s linear all;
+    &:hover {
+      color: crimson;
+      fill: crimson;
     }
   }
 }
