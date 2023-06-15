@@ -169,7 +169,7 @@ const placeholder = computed(() => search.placeholderConfig[search.placeholderIn
 
 onClickOutside(
   containerRef,
-  (event) => {
+  () => {
     search.isShowHistory = false
   },
 )
@@ -182,7 +182,7 @@ onMounted(() => {
   }, 3000)
 })
 
-function handleSearch($event, params?: any) {
+function handleSearch($event: any, params?: any) {
   console.log(search.text, params)
   if(params) {
     search.searchHistory.push(params)
