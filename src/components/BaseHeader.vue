@@ -1,6 +1,6 @@
 <template>
   <div class="base-header-container">
-    <div>图标</div>
+    <div class="icon" @click="handleToHome">图标</div>
     <div class="action-container">
       <div>登录/注册</div>
     </div>
@@ -8,6 +8,11 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+const router = useRouter();
+function handleToHome() {
+  router.replace('/')
+}
 </script>
 
 <style lang="less" scoped>
@@ -25,5 +30,9 @@
   .align-center;
   .justify-between;
   color: @textColor;
+
+  .icon {
+    .pointer;
+  }
 }
 </style>

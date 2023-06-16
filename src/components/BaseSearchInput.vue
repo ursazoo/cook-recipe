@@ -1,28 +1,33 @@
 <template>
-  <div class="base-search-container" ref="containerRef">
+  <div :class="clsx(['base-search-container', searchInput.isShowResult || searchInput.isShowHistory ? 'on-focus' : ''])" ref="containerRef">
     <div class="search-container">
-      <input class="base-search" type="text" ref="inputRef" v-model.trim="search.text" @keydown.enter="handleSearch" @focusin="search.isFocus=true;search.isShowHistory = true"  @focusout="search.isFocus=false;"/>
+      <input class="base-search" type="text" ref="inputRef"
+             v-model.trim="searchInput.text"
+             @keydown.enter="handleSearch"
+             @focusin="searchInput.isFocus=true; searchInput.isShowHistory = true; searchInput.isShowResult = true"
+             @focusout="searchInput.isFocus=false;"
+      />
       <div class="search-icon" @click="handleSearch">
         <icon-search :size="20"/>
       </div>
     </div>
-    <div class="search-label-container">
+    <div v-if="props.showPlaceholder" class="search-label-container">
       {{ placeholder }}
     </div>
-    <div v-if="search.isFocus && search.text && search.searchResult.length" class="search-result-container">
+    <div v-if="searchInput.isShowResult && searchInput.text && searchInput.searchResult.length" class="search-result-container">
       <div class="search-result-header">
         <div class="search-result-title">搜索相关</div>
       </div>
 
       <div class="search-result-content">
-        <div class="search-result-item" v-for="(item, index) in search.searchResult" :key="index" @click="handleSearch($event, item)">
+        <div class="search-result-item" v-for="(item, index) in searchInput.searchResult" :key="index" @click="handleSearch($event, item)">
           {{ item.name }}
           <BaseLabel :type="item.type" />
         </div>
       </div>
 
     </div>
-    <div v-if="search.isShowHistory && !search.text && search.searchHistory.length"  class="search-result-container">
+    <div v-if="searchInput.isShowHistory && !searchInput.text && searchInput.searchHistory.length"  class="search-result-container">
       <div class="search-result-header">
         <div class="search-result-title">搜索历史</div>
         <div class="search-result-title pointer" @click="handleClearHistory">
@@ -31,17 +36,17 @@
       <div class="search-result-content">
         <div
             class="search-result-item"
-             v-for="(item, index) in search.searchHistory"
+             v-for="(item, index) in searchInput.searchHistory"
              :key="index"
              @click="handleSearch($event, item)"
-             @mouseenter="search.hoverIndex = index"
-             @mouseleave="search.hoverIndex = null"
+             @mouseenter="searchInput.hoverIndex = index"
+             @mouseleave="searchInput.hoverIndex = null"
         >
           <div class="search-result-item-info">
             {{ item.name }}
             <BaseLabel :type="item.type" />
           </div>
-          <div v-if="search.hoverIndex === index" class="search-result-item-action" @click="search.searchHistory.slice(index, 1)">
+          <div v-if="searchInput.hoverIndex === index" class="search-result-item-action" @click="searchInput.searchHistory.slice(index, 1)">
             <icon-close class="close-icon"/>删除
           </div>
         </div>
@@ -51,32 +56,44 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from 'vue'
+import { defineProps, computed, onMounted, reactive, ref } from 'vue'
+import {useRouter} from "vue-router";
 import { onClickOutside } from '@vueuse/core'
 import { EStuff } from "@/types";
 import BaseLabel from "@/components/BaseLabel.vue";
+import clsx from "clsx";
+
+interface IProps {
+  showPlaceholder?: boolean;
+  value?: string;
+}
 
 interface ISearchLabel {
   name: string;
   type: EStuff;
 }
 
-interface ISearch {
+interface ISearchInput {
   text: string;
   isFocus: boolean;
   isShowHistory: boolean;
+  isShowResult: boolean;
   hoverIndex: null | number;
   placeholderIndex: number;
   placeholderConfig: string[];
   searchResult: ISearchLabel[];
   searchHistory: ISearchLabel[];
 }
-// const props = defineProps<IProps>({});
 
-const search = reactive<ISearch>({
-  text: '',
+const props = defineProps<IProps>();
+
+const router = useRouter();
+
+const searchInput = reactive<ISearchInput>({
+  text: props?.value || '',
   isFocus: false,
   isShowHistory: false,
+  isShowResult: false,
   hoverIndex: null,
   placeholderIndex: 0,
   placeholderConfig: [
@@ -113,46 +130,6 @@ const search = reactive<ISearch>({
     {
       name: '铁锅',
       type: EStuff.COOK_WARE,
-    },
-    {
-      name: '土豆',
-      type: EStuff.INGREDIENT,
-    },
-    {
-      name: '番茄',
-      type: EStuff.INGREDIENT,
-    },
-    {
-      name: '土豆炖牛肉',
-      type: EStuff.RECIPE,
-    },
-    {
-      name: '土豆烧排骨',
-      type: EStuff.RECIPE,
-    },
-    {
-      name: '铁锅',
-      type: EStuff.COOK_WARE,
-    },
-    {
-      name: '土豆',
-      type: EStuff.INGREDIENT,
-    },
-    {
-      name: '番茄',
-      type: EStuff.INGREDIENT,
-    },
-    {
-      name: '土豆炖牛肉',
-      type: EStuff.RECIPE,
-    },
-    {
-      name: '土豆烧排骨',
-      type: EStuff.RECIPE,
-    },
-    {
-      name: '铁锅',
-      type: EStuff.COOK_WARE,
     }
   ],
   searchHistory: [
@@ -165,38 +142,41 @@ const search = reactive<ISearch>({
 const inputRef = ref<HTMLInputElement | null>(null)
 const containerRef = ref<HTMLElement | null>(null)
 
-const placeholder = computed(() => search.placeholderConfig[search.placeholderIndex])
+const placeholder = computed(() => searchInput.placeholderConfig[searchInput.placeholderIndex])
 
 onClickOutside(
   containerRef,
   () => {
-    search.isShowHistory = false
+    searchInput.isShowHistory = false;
+    searchInput.isShowResult = false;
   },
 )
 
 onMounted(() => {
   // inputRef.value?.focus();
   setInterval(() => {
-    if (search.placeholderIndex > 9) search.placeholderIndex = 0
-    search.placeholderIndex++
+    if (searchInput.placeholderIndex > 9) searchInput.placeholderIndex = 0
+    searchInput.placeholderIndex++
   }, 3000)
 })
 
 function handleSearch($event: any, params?: any) {
-  console.log(search.text, params)
+  searchInput.isShowResult = false;
+  searchInput.isShowHistory = false;
   if(params) {
-    search.searchHistory.push(params)
+    searchInput.searchHistory.push(params)
+    window.open(`/search?${EStuff[params.type].toLowerCase()}=${params.name}`)
   } else {
-    search.searchHistory.push({
-      name: search.text,
+    searchInput.searchHistory.push({
+      name: searchInput.text,
       type: EStuff.INGREDIENT,
     })
+    window.open(`/search?ingredient=${searchInput.text}`)
   }
-
 }
 
 function handleClearHistory() {
-  search.searchHistory = [];
+  searchInput.searchHistory = [];
 }
 </script>
 
@@ -205,10 +185,15 @@ function handleClearHistory() {
   position: relative;
   width: 520px;
   height: 56px;
-  margin: 50px auto 10px;
+  margin: 0 auto;
   border-radius: 15px;
   background: #fff;
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
+  //transition: .2s linear all;
+}
+.on-focus {
+  border-radius: 15px 15px 0 0;
+  border-bottom: 1px solid #f0f0f0;
 }
 .search-container {
   .flex;
@@ -221,7 +206,7 @@ function handleClearHistory() {
     border-radius: 15px;
     outline: none;
     padding-left: 15px;
-    font-size: 22px;
+    font-size: 20px;
   }
   .search-icon {
     width: 10%;
@@ -238,15 +223,16 @@ function handleClearHistory() {
 }
 
 .search-result-container {
+  z-index: 1;
   position: absolute;
   width: 520px;
   min-height: 200px;
   max-height: 300px;
   overflow-y: auto;
   background: #fff;
-  border-radius: 15px;
-  top: 60px;
-  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 15px;
+  top: 56px;
+  box-shadow: 0 6px 5px 1px rgba(0, 0, 0, 0.1);
   padding: 10px;
 
   .search-result-header {
