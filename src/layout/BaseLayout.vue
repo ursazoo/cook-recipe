@@ -17,7 +17,7 @@ import BaseFooter from "@/components/BaseFooter.vue";
 .base-layout-container {
   width: 100vw;
   min-height: 100vh;
-  padding-top: 100px;
+  padding-top: 80px;
   padding-bottom: 380px;
   background-image: url('@/assets/images/shared/background.webp');
   background-repeat: repeat;
