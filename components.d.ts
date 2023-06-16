@@ -16,7 +16,6 @@ declare module 'vue' {
     BaseHeader: typeof import('./src/components/BaseHeader.vue')['default']
     BaseLabel: typeof import('./src/components/BaseLabel.vue')['default']
     BaseRecipe: typeof import('./src/components/BaseRecipe.vue')['default']
-    BaseSearch: typeof import('./src/components/BaseSearch.vue')['default']
     BaseSearchInput: typeof import('./src/components/BaseSearchInput.vue')['default']
     BaseSignInModal: typeof import('./src/components/BaseSignInModal.vue')['default']
     BaseTabs: typeof import('./src/components/BaseTabs.vue')['default']

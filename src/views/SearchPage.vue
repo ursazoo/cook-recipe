@@ -55,12 +55,11 @@ interface IPagination {
 }
 
 const activeLineClass = computed(() => {
-  console.log(search.activeType)
   return `tab-active-line translate-${search.activeType}`
 })
 
 const search = reactive<ISearch>({
-  activeType: EStuff[query.value.key.toUpperCase()],
+  activeType: EStuff[query.value.key.toUpperCase() as any] as any,
   ingredientList: [],
   recipeList: [
     {

@@ -56,8 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed, onMounted, reactive, ref } from 'vue'
-import {useRouter} from "vue-router";
+import { onMounted, computed, reactive, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { EStuff } from "@/types";
 import BaseLabel from "@/components/BaseLabel.vue";
@@ -86,8 +85,6 @@ interface ISearchInput {
 }
 
 const props = defineProps<IProps>();
-
-const router = useRouter();
 
 const searchInput = reactive<ISearchInput>({
   text: props?.value || '',
