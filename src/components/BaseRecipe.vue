@@ -43,7 +43,7 @@ const yumed = 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images
 const props = defineProps<IProps>()
 
 const { recipe } = toRefs(props);
-const coverRef = ref<HTMLImageElement>()
+const coverRef = ref<HTMLImageElement | any>()
 const isShowCover = ref(false);
 
 useIntersectionObserver(
@@ -55,7 +55,9 @@ useIntersectionObserver(
       // 加载
       setTimeout(() => {
         isShowCover.value = true;
-        coverRef.value.src = recipe.value.cover;
+        if(coverRef.value) {
+          coverRef.value.src = recipe.value.cover;
+        }
       }, 200)
     }
   },

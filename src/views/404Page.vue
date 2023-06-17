@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+// @ts-ignore
 import { Vue3Lottie } from 'vue3-lottie'
 import NotFoundJson from '@/assets/json/not-found.json';
 

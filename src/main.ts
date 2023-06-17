@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+// @ts-ignore
 import Vue3Lottie from 'vue3-lottie'
 import 'virtual:svg-icons-register'
 
