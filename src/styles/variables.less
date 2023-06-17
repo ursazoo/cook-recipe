@@ -1,4 +1,13 @@
 @textColor: #4a4a4a;
+@themeColor: #e26226;
+
+.ellipsis(@line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .flex {
   display: flex;
@@ -26,6 +35,10 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {

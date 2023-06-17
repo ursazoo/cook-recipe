@@ -12,6 +12,7 @@ declare module 'vue' {
     AFormItem: typeof import('@arco-design/web-vue')['FormItem']
     AInput: typeof import('@arco-design/web-vue')['Input']
     AModal: typeof import('@arco-design/web-vue')['Modal']
+    ATypographyParagraph: typeof import('@arco-design/web-vue')['TypographyParagraph']
     BaseFooter: typeof import('./src/components/BaseFooter.vue')['default']
     BaseHeader: typeof import('./src/components/BaseHeader.vue')['default']
     BaseLabel: typeof import('./src/components/BaseLabel.vue')['default']

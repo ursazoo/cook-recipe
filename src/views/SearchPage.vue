@@ -5,15 +5,15 @@
     <div class="search-result-container">
       <div class="tabs-title-container">
         <div class="tab-pane" @click="handleClickTab(EStuff.INGREDIENT)">
-          <div class="tab-pane-title">{{ stuffNameConfig[EStuff.INGREDIENT] }}</div>
+          <div :class="activeTabTitleClass(EStuff.INGREDIENT)">{{ stuffNameConfig[EStuff.INGREDIENT] }}</div>
         </div>
         <div class="tab-pane" @click="handleClickTab(EStuff.RECIPE)">
-          <div class="tab-pane-title">{{ stuffNameConfig[EStuff.RECIPE] }}</div>
+          <div :class="activeTabTitleClass(EStuff.RECIPE)">{{ stuffNameConfig[EStuff.RECIPE] }}</div>
         </div>
         <div class="tab-pane" @click="handleClickTab(EStuff.COOK_WARE)">
-          <div class="tab-pane-title">{{ stuffNameConfig[EStuff.COOK_WARE] }}</div>
+          <div :class="activeTabTitleClass(EStuff.COOK_WARE)">{{ stuffNameConfig[EStuff.COOK_WARE] }}</div>
         </div>
-        <div :class="activeLineClass"></div>
+        <div :class="activeTabLineClass"></div>
       </div>
       <div  class="tabs-content-container">
         <template v-if="search.activeType === EStuff.RECIPE" >
@@ -54,8 +54,14 @@ interface IPagination {
   pageSize: number
 }
 
-const activeLineClass = computed(() => {
+const activeTabLineClass = computed(() => {
   return `tab-active-line translate-${search.activeType}`
+})
+
+const activeTabTitleClass = computed(() => {
+  return (type: EStuff) => {
+    return `tab-pane-title ${search.activeType === type ? 'active' : ''}`
+  }
 })
 
 const search = reactive<ISearch>({
@@ -64,7 +70,7 @@ const search = reactive<ISearch>({
   recipeList: [
     {
       id: 1,
-      name: '土豆炖牛腩',
+      name: '小熊牌土豆炖牛腩',
       author: '小熊1',
       collected: false,
       collectedCount: 199,
@@ -72,8 +78,104 @@ const search = reactive<ISearch>({
     },
     {
       id: 2,
+      name: '【小熊牌】家庭版简易好吃的不得了土豆炖牛腩',
+      author: '小熊头小熊头小熊头小熊头小熊头',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 3,
       name: '土豆炖牛腩',
-      author: '小熊2',
+      author: '小熊3',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 4,
+      name: '土豆炖牛腩',
+      author: '小熊4',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 5,
+      name: '土豆炖牛腩',
+      author: '小熊5',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 6,
+      name: '土豆炖牛腩',
+      author: '小熊6',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 1,
+      name: '小熊牌土豆炖牛腩',
+      author: '小熊1',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 2,
+      name: '【小熊牌】家庭版简易好吃的不得了土豆炖牛腩',
+      author: '小熊头小熊头小熊头小熊头小熊头',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 3,
+      name: '土豆炖牛腩',
+      author: '小熊3',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 4,
+      name: '土豆炖牛腩',
+      author: '小熊4',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 5,
+      name: '土豆炖牛腩',
+      author: '小熊5',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 6,
+      name: '土豆炖牛腩',
+      author: '小熊6',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 1,
+      name: '小熊牌土豆炖牛腩',
+      author: '小熊1',
+      collected: false,
+      collectedCount: 199,
+      cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
+    },
+    {
+      id: 2,
+      name: '【小熊牌】家庭版简易好吃的不得了土豆炖牛腩',
+      author: '小熊头小熊头小熊头小熊头小熊头',
       collected: false,
       collectedCount: 199,
       cover: 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images%2Ftest%2FWechatIMG377.jpeg'
@@ -126,7 +228,8 @@ function handleClickTab(type: EStuff) {
 
 <style lang="less" scoped>
 .search-page-container {
-  padding: 30px 20px;
+  border-radius: 15px;
+  padding: 30px 0;
   background: #fff;
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
 }
@@ -145,7 +248,13 @@ function handleClickTab(type: EStuff) {
     .text-center;
     .pointer;
     .tab-pane-title {
+      color: @textColor;
       margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .tab-pane-title.active {
+      color: @themeColor;
     }
   }
   .tab-active-line {
@@ -153,8 +262,9 @@ function handleClickTab(type: EStuff) {
     top: 30px;
     left: 0;
     width: 16.5%;
-    height: 2px;
-    background: red;
+    height: 3px;
+    border-radius: 10px;
+    background: @themeColor;
     transition: .2s linear all;
   }
 
