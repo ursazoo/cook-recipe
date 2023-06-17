@@ -1,20 +1,20 @@
 <template>
   <div class="base-recipe-container">
-    <div class="recipe-cover-container">
-      <img class="recipe-cover" :alt="recipe.name" :src="recipe.cover" />
+    <div class="recipe-cover-container" @click="handleToRecipePage(recipe.name)">
+      <img ref="coverRef" class="recipe-cover" :alt="recipe.name" :src="loadingCover" />
     </div>
     <div class="recipe-info-container">
       <div class="recipe-info">
-        <div class="recipe-info-title">{{recipe?.name}}</div>
-        <div class="recipe-info-author">{{recipe?.author}}</div>
+        <div class="recipe-info-title" @click="handleToRecipePage(recipe.name)">{{recipe?.name}}</div>
+        <div class="recipe-info-author" @click="handleToAuthorPage(recipe.author)">{{recipe?.author}}</div>
       </div>
       <div class="recipe-collected-container">
         <div
           :class="clsx(recipe?.collected ? 'recipe-collected' : 'recipe-collect')"
           @click="recipe.collected = !recipe.collected"
         >
-          <img v-if="!recipe.collected" class="recipe-collect-icon" alt="yum" :src="yum" />
-          <img v-else alt="yumed" class="recipe-collect-icon" :src="yumed" />
+          <img v-if="!recipe.collected" class="recipe-collect-icon" alt="not collected" :src="yum" />
+          <img v-else alt="collected" class="recipe-collect-icon" :src="yumed" />
         </div>
         <div class="recipe-collected-count">{{recipe?.collectedCount}}</div>
       </div>
@@ -23,7 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs } from "vue";
+import { ref, toRefs, watchEffect } from "vue";
+import { useIntersectionObserver } from '@vueuse/core'
 import clsx from "clsx";
 
 interface IProps {
@@ -36,11 +37,37 @@ interface IProps {
   }
 }
 
+const loadingCover = ref('https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images/test/cook-ware-loading.png');
 const yum = 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images/test/yum-white.webp';
 const yumed = 'https://cook-recipe-1315803049.cos.ap-nanjing.myqcloud.com/images/test/yumd-orange.webp'
 const props = defineProps<IProps>()
 
-const {recipe} = toRefs(props);
+const { recipe } = toRefs(props);
+const coverRef = ref<HTMLImageElement>()
+const isShowCover = ref(false);
+
+useIntersectionObserver(
+  coverRef,
+  ([{ isIntersecting }], observerElement) => {
+    if(!isIntersecting) {
+    //   不加载
+    } else {
+      // 加载
+      setTimeout(() => {
+        isShowCover.value = true;
+        coverRef.value.src = recipe.value.cover;
+      }, 200)
+    }
+  },
+)
+
+function handleToRecipePage(name: string) {
+  window.open(`/recipe/${name}`)
+}
+
+function handleToAuthorPage(name: string) {
+  window.open(`/author/${name}`)
+}
 </script>
 
 <style lang="less" scoped>
@@ -73,6 +100,11 @@ const {recipe} = toRefs(props);
     height: 100%;
     border-radius: 10px;
     object-fit: cover;
+  }
+  .default-cover {
+    width: 200px;
+    height: 200px;
+    background-color: red;
   }
 }
 

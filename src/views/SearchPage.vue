@@ -234,9 +234,6 @@ function handleClickTab(type: EStuff) {
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
 }
 
-.search-result-container {
-}
-
 .tabs-title-container {
   position: relative;
   width: 520px;
