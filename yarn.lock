@@ -553,12 +553,27 @@
   resolved "https://registry.npmmirror.com/@vueuse/metadata/-/metadata-10.1.2.tgz#d8ffe557b1042efd03a0aa88540a00c25d193ee3"
   integrity sha512-3mc5BqN9aU2SqBeBuWE7ne4OtXHoHKggNgxZR2K+zIW4YLsy6xoZ4/9vErQs6tvoKDX6QAqm3lvsrv0mczAwIQ==
 
+"@vueuse/router@^10.2.0":
+  version "10.2.0"
+  resolved "https://registry.npmmirror.com/@vueuse/router/-/router-10.2.0.tgz#d6453e649175f0d20adae2c6ca26a5da458b8102"
+  integrity sha512-vks2xHCZWeKaFWfgfmrzi6kJ0cTHvRCHzPUzmjvfbmzDrB2YOS1ymCPjfu1LH3E82H+RyebaSRhTeoDc3AsEFw==
+  dependencies:
+    "@vueuse/shared" "10.2.0"
+    vue-demi ">=0.14.5"
+
 "@vueuse/shared@10.1.2":
   version "10.1.2"
   resolved "https://registry.npmmirror.com/@vueuse/shared/-/shared-10.1.2.tgz#31d8733a217a6396eb67706319133bf62cdd8baa"
   integrity sha512-1uoUTPBlgyscK9v6ScGeVYDDzlPSFXBlxuK7SfrDGyUTBiznb3mNceqhwvZHjtDRELZEN79V5uWPTF1VDV8svA==
   dependencies:
     vue-demi ">=0.14.0"
+
+"@vueuse/shared@10.2.0":
+  version "10.2.0"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/-/shared-10.2.0.tgz#9309b8e1ed660e24643482065ef0e59d223c3f69"
+  integrity sha512-dIeA8+g9Av3H5iF4NXR/sft4V6vys76CpZ6hxwj8eMXybXk2WRl3scSsOVi+kQ9SX38COR7AH7WwY83UcuxbSg==
+  dependencies:
+    vue-demi ">=0.14.5"
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -2279,6 +2294,11 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmmirror.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
@@ -2288,6 +2308,11 @@ lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
+lottie-web@5.12.1:
+  version "5.12.1"
+  resolved "https://registry.npmmirror.com/lottie-web/-/lottie-web-5.12.1.tgz#0974eefaf8058c1cba4a05ae67a77894022f9e71"
+  integrity sha512-J5LgeexlmrrzRwe1q4qwQIwJmjih62vatDUPtxquaYVfjvSt/PfNfanhlfSrvdGPr4/nxJ8+uBKlS359Jq4F6w==
 
 lru-cache@^6.0.0:
   version "6.0.0"
@@ -3600,6 +3625,14 @@ vue-tsc@^1.6.5:
     "@volar/vue-language-core" "1.6.5"
     "@volar/vue-typescript" "1.6.5"
     semver "^7.3.8"
+
+vue3-lottie@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.npmmirror.com/vue3-lottie/-/vue3-lottie-2.7.1.tgz#1c429753ef6d3786af972b5a688de8c4b628a752"
+  integrity sha512-FWHDhqJxKMFKO+86VeaD9xHFY2h0zUh4VGPwGg1/cLkzWSQhJfLcV48Lf3GMfKpgVlvWNc/C2eoHndmPlc9puA==
+  dependencies:
+    lodash-es "^4.17.21"
+    lottie-web "5.12.1"
 
 vue@^3.3.4:
   version "3.3.4"

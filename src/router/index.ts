@@ -18,6 +18,21 @@ const router = createRouter({
       path: '/search',
       name: 'search',
       component: () => import('../views/SearchPage.vue')
+    },
+    {
+      path: '/recipe/:recipeName',
+      name: 'recipe',
+      component: () => import('../views/RecipePage.vue')
+    },
+    {
+      path: '/author/:author',
+      name: 'author',
+      component: () => import('../views/AuthorPage.vue')
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: 'not-found',
+      component: () => import('../views/404Page.vue')
     }
   ]
 })
