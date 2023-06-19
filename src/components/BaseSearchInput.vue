@@ -8,7 +8,7 @@
              @focusout="searchInput.isFocus=false;"
       />
       <div class="search-icon" @click="handleSearch">
-        <icon-search :size="20"/>
+<!--        <icon-search :size="20"/>-->
       </div>
     </div>
     <div v-if="props.showPlaceholder" class="search-label-container">
@@ -31,7 +31,8 @@
       <div class="search-result-header">
         <div class="search-result-title">搜索历史</div>
         <div class="search-result-title pointer" @click="handleClearHistory">
-          <icon-delete class="delete-icon"/>清除全部</div>
+<!--          <icon-delete class="delete-icon"/>清除全部-->
+        </div>
       </div>
       <div class="search-result-content">
         <div
@@ -47,7 +48,7 @@
             <BaseLabel :type="item.type" />
           </div>
           <div v-if="searchInput.hoverIndex === index" class="search-result-item-action" @click="searchInput.searchHistory.slice(index, 1)">
-            <icon-close class="close-icon"/>删除
+<!--            <icon-close class="close-icon"/>删除-->
           </div>
         </div>
       </div>
@@ -58,9 +59,12 @@
 <script setup lang="ts">
 import { onMounted, computed, reactive, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
+import clsx from "clsx";
+
+import {useSearchStore} from "@/stores/search";
 import { EStuff } from "@/types";
 import BaseLabel from "@/components/BaseLabel.vue";
-import clsx from "clsx";
+import { useRouter } from "vue-router";
 
 interface IProps {
   showPlaceholder?: boolean;
@@ -84,10 +88,14 @@ interface ISearchInput {
   searchHistory: ISearchLabel[];
 }
 
+const router = useRouter();
+const searchStore = useSearchStore();
 const props = defineProps<IProps>();
 
+console.log(searchStore.keyword)
+
 const searchInput = reactive<ISearchInput>({
-  text: props?.value || '',
+  text: searchStore.keyword || '',
   isFocus: false,
   isShowHistory: false,
   isShowResult: false,
@@ -162,13 +170,16 @@ function handleSearch($event: any, params?: any) {
   searchInput.isShowHistory = false;
   if(params) {
     searchInput.searchHistory.push(params)
-    window.open(`/search?${EStuff[params.type].toLowerCase()}=${params.name}`)
+    router.push(`/search?${EStuff[params.type].toLowerCase()}=${params.name}`)
   } else {
+    searchStore.keyword = searchInput.text;
+    console.log(searchStore.keyword)
     searchInput.searchHistory.push({
       name: searchInput.text,
       type: EStuff.INGREDIENT,
     })
-    window.open(`/search?ingredient=${searchInput.text}`)
+
+    router.push(`/search?ingredient=${searchInput.text}1111`)
   }
 }
 
@@ -181,15 +192,16 @@ function handleClearHistory() {
 .base-search-container {
   position: relative;
   width: 520px;
-  height: 56px;
+  height: 50px;
   margin: 0 auto;
-  border-radius: 15px;
+  border-radius: 10px;
   background: #fff;
+  border: 1px solid #e36226;
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
   //transition: .2s linear all;
 }
 .on-focus {
-  border-radius: 15px 15px 0 0;
+  border-radius: 10px 10px 0 0;
   border-bottom: 1px solid #f0f0f0;
 }
 .search-container {
@@ -203,12 +215,12 @@ function handleClearHistory() {
     border-radius: 15px;
     outline: none;
     padding-left: 15px;
-    font-size: 20px;
+    font-size: 16px;
   }
   .search-icon {
     width: 10%;
-    height: 54px;
-    line-height: 64px;
+    height: 50px;
+    line-height: 50px;
     cursor: pointer;
     text-align: center;
   }
@@ -228,9 +240,12 @@ function handleClearHistory() {
   overflow-y: auto;
   background: #fff;
   border-radius: 0 0 15px 15px;
-  top: 56px;
+  top: 48px;
+  left: -1px;
   box-shadow: 0 6px 5px 1px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  border: 1px solid #e36226;
+  border-top: 0;
 
   .search-result-header {
     .flex;

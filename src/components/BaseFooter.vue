@@ -26,9 +26,7 @@
 <style lang="less" scoped>
 
 .base-footer-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  position: relative;
   width: 100vw;
   min-height: 100px;
   padding: 10px 20px 70px;

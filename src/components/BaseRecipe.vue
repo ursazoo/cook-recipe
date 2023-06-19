@@ -1,11 +1,11 @@
 <template>
   <div class="base-recipe-container">
-    <div class="recipe-cover-container" @click="handleToRecipePage(recipe.name)">
+    <div class="recipe-cover-container" @click="handleToRecipePage({name: recipe.name, id: recipe.id})">
       <img ref="coverRef" class="recipe-cover" :alt="recipe.name" :src="loadingCover" />
     </div>
     <div class="recipe-info-container">
       <div class="recipe-info">
-        <div class="recipe-info-title" @click="handleToRecipePage(recipe.name)">{{recipe?.name}}</div>
+        <div class="recipe-info-title" @click="handleToRecipePage({name: recipe.name, id: recipe.id})">{{recipe?.name}}</div>
         <div class="recipe-info-author" @click="handleToAuthorPage(recipe.author)">{{recipe?.author}}</div>
       </div>
       <div class="recipe-collected-container">
@@ -29,6 +29,7 @@ import clsx from "clsx";
 
 interface IProps {
   recipe: {
+    id: string;
     name: string;
     cover: string;
     author: string;
@@ -48,7 +49,7 @@ const isShowCover = ref(false);
 
 useIntersectionObserver(
   coverRef,
-  ([{ isIntersecting }], observerElement) => {
+  ([{ isIntersecting }]) => {
     if(!isIntersecting) {
     //   不加载
     } else {
@@ -63,8 +64,8 @@ useIntersectionObserver(
   },
 )
 
-function handleToRecipePage(name: string) {
-  window.open(`/recipe/${name}`)
+function handleToRecipePage({name, id}: {name: string; id: string}) {
+  window.open(`/recipe/${name}/${id}`)
 }
 
 function handleToAuthorPage(name: string) {
