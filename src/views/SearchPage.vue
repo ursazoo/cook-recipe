@@ -1,7 +1,6 @@
 <template>
   <div class="search-page-container">
-    <BaseSearch :show-placeholder="false" :value="query.value" />
-
+<!--    <BaseSearch :show-placeholder="false" :value="query.value" />-->
     <div class="search-result-container">
       <div class="tabs-title-container">
         <div class="tab-pane" @click="handleClickTab(EStuff.INGREDIENT)">
@@ -25,7 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import BaseSearch from '@/components/BaseSearchInput.vue'
 import { computed, reactive } from 'vue'
 import { useUrlSearchParams } from '@vueuse/core'
 import { EStuff, stuffNameConfig } from '@/types'

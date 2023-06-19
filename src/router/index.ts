@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../views/SearchPage.vue')
     },
     {
-      path: '/recipe/:recipeName',
+      path: '/recipe/:recipeName/:recipeId',
       name: 'recipe',
       component: () => import('../views/RecipePage.vue')
     },
