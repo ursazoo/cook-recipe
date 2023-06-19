@@ -12,19 +12,27 @@ export interface HttpResponse<T = unknown> {
   data: T;
 }
 
-axios.interceptors.request.use(
+const request = axios.create({
+  timeout: 5000,
+})
+
+request.interceptors.request.use(
   (config: AdaptAxiosRequestConfig) => {
     // 此处对请求进行配置
+
+    config.baseURL = import.meta.env.VITE_APP_CLIENT_URL;
     return config;
   },
   (error) => {
+    console.log(error)
     // 对请求错误做些什么
     return Promise.reject(error);
   }
 );
 // 添加响应拦截器
-axios.interceptors.response.use(
+request.interceptors.response.use(
   (response) => {
+    console.log(response)
     const res = response.data;
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
@@ -41,6 +49,12 @@ axios.interceptors.response.use(
     return res;
   },
   (error) => {
-    return Promise.reject(error);
+    return Promise.reject({
+      data: error.response.data,
+      status: error.response.status,
+      message: error.response.statusText
+    });
   }
 );
+
+export default request;
