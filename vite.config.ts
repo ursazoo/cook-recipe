@@ -8,7 +8,6 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd());
@@ -34,16 +33,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         inject: 'body-last',
         customDomId: '__svg__icons__dom__',
       }),
-
       AutoImport({
-        resolvers: [ArcoResolver()]
+        resolvers: []
       }),
       Components({
-        resolvers: [
-          ArcoResolver({
-            sideEffect: true
-          })
-        ]
+        resolvers: []
       })
     ],
     resolve: {
