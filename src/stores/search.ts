@@ -1,9 +1,9 @@
 import {ref} from 'vue';
 import { defineStore } from 'pinia';
 
-export const useModalStore = defineStore('modal', () =>{
-  const isSignInModalShow = ref(false);
+export const useSearchStore = defineStore('search', () =>{
+  const keyword = ref('');
   return {
-    isSignInModalShow
+    keyword
   }
 });
