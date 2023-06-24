@@ -5,8 +5,9 @@
     <div>
       <slot name="default"></slot>
     </div>
-    <div class="flex align-center cursor-pointer">
-      <div>登录/注册</div>
+    <div class="flex align-center">
+      <div class="mr-5 cursor-pointer">待购食材</div>
+      <div class="cursor-pointer">登录/注册</div>
     </div>
   </div>
 </template>

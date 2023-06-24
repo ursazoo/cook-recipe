@@ -22,7 +22,7 @@ export default {
       // => @media (min-width: 1536px) { ... }
     },
     color: {
-      active: '#e26226'
+      active: '#e26226',
     },
     extend: {
       backgroundImage: {
