@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-[100px] flex align-middle justify-between pt-2.5 bg-white shadow-lg text-[#4a4a4a]">
+  <div class="relative min-h-[100px] flex align-middle justify-between pt-2.5 bg-white shadow-lg text-[#4a4a4a] xs:border xs:border-solid xs:border-[#f0f0f0]">
     <div class="container h-full mx-auto">
       <div class="flex align-top">
         <div class="basis-2/3 mr-2.5">

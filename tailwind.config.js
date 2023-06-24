@@ -25,7 +25,7 @@ export default {
       active: '#e26226',
     },
     extend: {
-      backgroundImage: {
+      background: {
         layout: "url('@/assets/images/shared/background.webp')"
       },
     }
