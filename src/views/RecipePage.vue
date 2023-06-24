@@ -1,8 +1,6 @@
 <template>
-  <div class="recipe-page-container">
-    {{ recipe.name }}
-    {{ recipe.id }}
-  </div>
+  {{ recipe.name }}
+  {{ recipe.id }}
 </template>
 
 <script setup lang="ts">

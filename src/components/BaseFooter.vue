@@ -1,21 +1,21 @@
 <template>
-  <div class="base-footer-container">
-    <div class="content-container">
-      <div class="info-container">
-        <div class="about-container">
-          <div class="about-title">关于我</div>
-          <div class="about-text">在 Cookpad，我們的使命是 天天享受烹飪趣！因為我們相信，烹飪能讓人們、社群以及地球更快樂且健康。我們的服務讓全世界的廚友透過分享食譜與下廚秘訣幫助彼此。</div>
-          <div class="about-title">关于cook recipe</div>
-          <div class="about-text">在 Cookpad，我們的使命是 天天享受烹飪趣！因為我們相信，烹飪能讓人們、社群以及地球更快樂且健康。我們的服務讓全世界的廚友透過分享食譜與下廚秘訣幫助彼此。</div>
+  <div class="relative min-h-[100px] flex align-middle justify-between pt-2.5 bg-white shadow-lg text-[#4a4a4a]">
+    <div class="container h-full mx-auto">
+      <div class="flex align-top">
+        <div class="basis-2/3 mr-2.5">
+          <div class="my-2.5 font-semibold">关于我</div>
+          <div class="mb-1">在 Cookpad，我們的使命是 天天享受烹飪趣！因為我們相信，烹飪能讓人們、社群以及地球更快樂且健康。我們的服務讓全世界的廚友透過分享食譜與下廚秘訣幫助彼此。</div>
+          <div class="my-2.5 font-semibold">关于cook recipe</div>
+          <div class="mb-1">在 Cookpad，我們的使命是 天天享受烹飪趣！因為我們相信，烹飪能讓人們、社群以及地球更快樂且健康。我們的服務讓全世界的廚友透過分享食譜與下廚秘訣幫助彼此。</div>
         </div>
-        <div class="links-container">
+        <div class="basis-1/3 text-center ml-2.5 py-2.5">
           <div class="link">github.</div>
           <div class="link">bilibili.</div>
           <div class="link">juejin.</div>
         </div>
       </div>
-      <div class="copyright">Copyright © ursazoo. 保留所有權利</div>
-      <img alt="foot-image" class="foot-image" src="@/assets/images/shared/foot.png" />
+      <div class="mt-2.5 text-center">Copyright © ursazoo. 保留所有權利</div>
+      <img alt="" class="w-1/3 xs:w-full mx-auto mt-4" src="@/assets/images/shared/foot.png" />
     </div>
   </div>
 </template>
@@ -25,57 +25,4 @@
 
 <style lang="less" scoped>
 
-.base-footer-container {
-  position: relative;
-  width: 100vw;
-  min-height: 100px;
-  padding: 10px 20px 70px;
-  background: #fff;
-  box-shadow: 0 1px 5px 1px rgba(0,0,0,.1);
-  .flex;
-  .align-center;
-  .justify-between;
-  color: @textColor;
-}
-
-.content-container {
-  width: 1200px;
-  height: 100%;
-  margin: 0 auto;
-  .copyright {
-    margin-top: 10px;
-    text-align: center;
-  }
-  .foot-image {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-  }
-}
-
-.info-container {
-  .flex;
-  .align-top;
-}
-
-.about-container {
-  flex: 7;
-  margin-right: 10px;
-
-  .about-title {
-    margin: 10px 0;
-    font-weight: 600;
-  }
-  .about-text {
-    margin-bottom: 5px;
-  }
-}
-
-.links-container {
-  flex: 3;
-  text-align: center;
-  margin-left: 10px;
-}
 </style>

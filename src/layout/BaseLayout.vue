@@ -1,9 +1,9 @@
 <template>
-  <div class="base-layout-container">
+  <div class="w-screen min-h-screen pt-28 bg-layout bg-repeat bg-auto">
     <BaseHeader>
-      <BaseSearchInput v-if="!isHomePage" />
+      <BaseSearchInput v-if="isSearchPage" />
     </BaseHeader>
-    <div class="content-container">
+    <div class="container min-h-screen mx-auto mb-10 px-3.5 py-5 bg-white shadow-lg">
       <slot name="default"></slot>
     </div>
     <BaseFooter />
@@ -19,27 +19,5 @@ import {useRoute} from "vue-router";
 import { computed } from "vue";
 const route = useRoute();
 
-const isHomePage = computed(() => route.path === '/')
+const isSearchPage = computed(() => route.path === '/search')
 </script>
-
-<style lang="less" scoped>
-.base-layout-container {
-  width: 100vw;
-  min-height: 100vh;
-  padding-top: 100px;
-  //padding-bottom: 380px;
-  background-image: url('@/assets/images/shared/background.webp');
-  background-repeat: repeat;
-  background-size: 10%;
-  //backdrop-filter: blur(2px);
-}
-
-.content-container {
-  width: 1200px;
-  min-height: 100vh;
-  margin: 0 auto 40px;
-  //background: #fff;
-  //box-shadow: 0 1px 5px 1px rgba(0,0,0,.1);
-  border-radius: 20px;
-}
-</style>

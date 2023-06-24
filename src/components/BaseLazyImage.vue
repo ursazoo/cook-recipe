@@ -1,5 +1,5 @@
 <template>
-  <img :src="imageSrc" :alt="alt" ref="lazyImageRef" class="lazy-image-container" />
+  <img :src="imageSrc" :alt="alt" ref="lazyImageRef" class="w-full h-full object-cover" />
 </template>
 
 <script setup lang="ts">
@@ -39,9 +39,4 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="less" scoped>
-.lazy-image-container {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
 </style>

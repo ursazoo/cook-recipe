@@ -1,29 +1,27 @@
 <template>
-  <div class="base-recipe-container">
-    <div class="recipe-cover-container" @click="handleToRecipePage({name: recipe.name, id: recipe.id})">
-      <img ref="coverRef" class="recipe-cover" :alt="recipe.name" :src="loadingCover" />
+  <div class="p-3 transition cursor-pointer border rounded border-solid border-[#f7f9fa] bg-[#f7f9fa] hover:bg-white hover:border-[#ff915e99]">
+    <div class="h-52 xs:h-32 rounded bg-[rgba(27, 23, 67, 0.03)]" @click="handleToRecipePage({name: recipe.name, id: recipe.id})">
+      <img ref="coverRef" class="h-full rounded object-cover" :alt="recipe.name" :src="loadingCover" />
     </div>
-    <div class="recipe-info-container">
-      <div class="recipe-info">
-        <div class="recipe-info-title" @click="handleToRecipePage({name: recipe.name, id: recipe.id})">{{recipe?.name}}</div>
-        <div class="recipe-info-author" @click="handleToAuthorPage(recipe.author)">{{recipe?.author}}</div>
+    <div class="grid grid-cols-5 items-start text-left mt-2.5">
+      <div class="col-span-4 xs:col-span-3.5 h-12 mb-2 text-[#333] leading-normal text-base font-semibold transition ellipsis-2 hover:text-[#e26226]" @click="handleToRecipePage({name: recipe.name, id: recipe.id})">{{recipe?.name}}</div>
+      <div
+        :class="clsx(['col-span-1 xs:col-span-1 w-10 xs:w-8 h-10 xs:h-8 rounded-full transition', recipe.collected ? 'bg-white border-2 border-solid border-[#e26226]' : 'bg-[#e26226] border-2 border-solid border-transparent'])"
+        @click="recipe.collected = !recipe.collected"
+      >
+        <img v-if="!recipe.collected" class="w-full h-full" alt="not collected" :src="yum" />
+        <img v-else alt="collected" class="w-full h-full" :src="yumed" />
       </div>
-      <div class="recipe-collected-container">
-        <div
-          :class="clsx(recipe?.collected ? 'recipe-collected' : 'recipe-collect')"
-          @click="recipe.collected = !recipe.collected"
-        >
-          <img v-if="!recipe.collected" class="recipe-collect-icon" alt="not collected" :src="yum" />
-          <img v-else alt="collected" class="recipe-collect-icon" :src="yumed" />
-        </div>
-        <div class="recipe-collected-count">{{recipe?.collectedCount}}</div>
-      </div>
+    </div>
+    <div class="grid grid-cols-5 items-start text-left mt-2.5">
+      <div class="col-span-4 text-xs text-[#707070] transition ellipsis-1 hover:text-[#e26226]" @click="handleToAuthorPage(recipe.author)">{{recipe?.author}}</div>
+      <div class="col-span-1 text-xs text-center text-[#707070] font-semibold leading-tight">{{recipe?.collectedCount}}</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, watchEffect } from "vue";
+import { ref, toRefs } from "vue";
 import { useIntersectionObserver } from '@vueuse/core'
 import clsx from "clsx";
 
@@ -74,115 +72,4 @@ function handleToAuthorPage(name: string) {
 </script>
 
 <style lang="less" scoped>
-.base-recipe-container {
-  width: 220px;
-  margin: 0 0 20px 16px;
-  padding: 11px;
-  background-color: #f7f9fa;
-  border: 1.5px solid #f7f9fa;
-  border-radius: 12px;
-  transition: .5s all;
-  .text-center;
-  .pointer;
-
-  &:hover {
-    background-color: #fff;
-    border-color: rgb(255 145 94 / 60%);
-    box-shadow: 0 8px 12px 0 rgba(255, 80, 0, 0.06);
-  }
-}
-.recipe-cover-container {
-  height: 200px;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: rgba(27, 23, 67, 0.03);
-  .font-size(0);
-  .recipe-cover {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-  .default-cover {
-    width: 200px;
-    height: 200px;
-    background-color: red;
-  }
-}
-
-.recipe-info-container {
-  margin-top: 10px;
-  .flex;
-  .align-top;
-  .text-left;
-  .recipe-info {
-    width: 161px;
-
-    &-title {
-      height: 48px;
-      color: #333;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      transition: .2s linear all;
-      .ellipsis(2);
-      &:hover {
-        color: @themeColor;
-      }
-    }
-
-    &-author {
-      font-size: 12px;
-      color: #707070;
-      transition: .2s linear all;
-      .ellipsis(1);
-      &:hover {
-        color: @themeColor;
-      }
-    }
-  }
-  .recipe-collected-container {
-    margin-left: 10px;
-    .recipe-collect,.recipe-collected {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 20px;
-      border-radius: 50%;
-      transition: .2s all;
-      text-align: center;
-      line-height: 36px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .recipe-collect {
-      background-color: @themeColor;
-      border: 2px solid transparent;
-      color: #fff;
-    }
-
-    .recipe-collected {
-      background-color: #fff;
-      border: 2px solid @themeColor;
-      color: @themeColor;
-    }
-
-    .recipe-collect-icon {
-      width: 38px;
-      height: 38px;
-      font-size: 0;
-    }
-
-    .recipe-collected-count {
-      width: 40px;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1;
-      color: #707070;
-      .text-center;
-    }
-  }
-
-}
 </style>

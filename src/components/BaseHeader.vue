@@ -1,10 +1,11 @@
 <template>
-  <div class="base-header-container">
-    <div class="icon-container" @click="handleToHome">图标</div>
-    <div class="base-header-center-container">
+<!--  base-header-container-->
+  <div class="container max-w-full w-screen h-14 mx-auto fixed z-10 top-0 left-1/2 -translate-x-1/2 px-5 flex align-center justify-between bg-white shadow-lg">
+    <div class="text-center cursor-pointer" @click="handleToHome">图标</div>
+    <div>
       <slot name="default"></slot>
     </div>
-    <div class="action-container">
+    <div class="flex align-center cursor-pointer">
       <div>登录/注册</div>
     </div>
   </div>
@@ -21,33 +22,3 @@ function handleToHome() {
   router.replace('/')
 }
 </script>
-
-<style lang="less" scoped>
-.base-header-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 80px;
-  padding: 10px 20px;
-  background: #fff;
-  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
-  .flex;
-  .align-center;
-  .justify-between;
-  color: @textColor;
-}
-
-.icon-container {
-  min-width: 10%;
-  .pointer;
-}
-
-.base-header-center-container {
-  height: 60px;
-}
-
-.action-container {
-  min-width: 10%;
-}
-</style>

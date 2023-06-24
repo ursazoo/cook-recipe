@@ -2,19 +2,19 @@
   <div class="search-page-container">
 <!--    <BaseSearch :show-placeholder="false" :value="query.value" />-->
     <div class="search-result-container">
-      <div class="tabs-title-container">
-        <div class="tab-pane" @click="handleClickTab(EStuff.INGREDIENT)">
+      <div class="w-72 xs:w-full flex mb-5 mx-5 xs:mx-auto bg-[#f8f9fa]">
+        <div :class="activeTabPaneClass(EStuff.INGREDIENT)" @click="handleClickTab(EStuff.INGREDIENT)">
           <div :class="activeTabTitleClass(EStuff.INGREDIENT)">{{ stuffNameConfig[EStuff.INGREDIENT] }}</div>
         </div>
-        <div class="tab-pane" @click="handleClickTab(EStuff.RECIPE)">
+        <div :class="activeTabPaneClass(EStuff.RECIPE)" @click="handleClickTab(EStuff.RECIPE)">
           <div :class="activeTabTitleClass(EStuff.RECIPE)">{{ stuffNameConfig[EStuff.RECIPE] }}</div>
         </div>
-        <div class="tab-pane" @click="handleClickTab(EStuff.COOK_WARE)">
+        <div :class="activeTabPaneClass(EStuff.COOK_WARE)" @click="handleClickTab(EStuff.COOK_WARE)">
           <div :class="activeTabTitleClass(EStuff.COOK_WARE)">{{ stuffNameConfig[EStuff.COOK_WARE] }}</div>
         </div>
         <div :class="activeTabLineClass"></div>
       </div>
-      <div  class="tabs-content-container">
+      <div class="grid grid-cols-6 gap-7 px-5 xs:grid-cols-2 xs:gap-2 xs:px-1">
         <template v-if="search.activeType === EStuff.RECIPE" >
           <BaseRecipe v-for="(recipe) in search.recipeList" :key="recipe.id" :recipe="recipe" />
         </template>
@@ -54,6 +54,12 @@ interface IPagination {
 
 const activeTabLineClass = computed(() => {
   return `tab-active-line translate-${search.activeType}`
+})
+
+const activeTabPaneClass = computed(() => {
+  return (type: EStuff) => {
+    return `tab-pane ${search.activeType === type ? 'active' : ''}`
+  }
 })
 
 const activeTabTitleClass = computed(() => {
@@ -225,59 +231,23 @@ function handleClickTab(type: EStuff) {
 </script>
 
 <style lang="less" scoped>
-.search-page-container {
-  border-radius: 15px;
-  padding: 30px 0;
+.tab-pane {
+  .flex(1);
+  .text-center;
+  .pointer;
+  border: 1.5px solid #fff;
+  .tab-pane-title {
+    color: @textColor;
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .tab-pane-title.active {
+    color: @themeColor;
+  }
+}
+.tab-pane.active {
   background: #fff;
-  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1);
-}
-
-.tabs-title-container {
-  position: relative;
-  width: 520px;
-  margin: 20px auto 10px;
-  .flex;
-  .align-top;
-  .tab-pane {
-    .flex(1);
-    .text-center;
-    .pointer;
-    .tab-pane-title {
-      color: @textColor;
-      margin-bottom: 20px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .tab-pane-title.active {
-      color: @themeColor;
-    }
-  }
-  .tab-active-line {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 16.5%;
-    height: 3px;
-    border-radius: 10px;
-    background: @themeColor;
-    transition: .2s linear all;
-  }
-
-  .translate-0 {
-    transform: translateX(50%);
-  }
-
-  .translate-1 {
-    transform: translateX(250%);
-  }
-
-  .translate-2 {
-    transform: translateX(450%);
-  }
-}
-
-.tabs-content-container {
-  .flex;
-  flex-wrap: wrap;
+  border: 1.5px solid rgb(255 145 94 / 60%);
 }
 </style>
