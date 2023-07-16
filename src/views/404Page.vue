@@ -30,7 +30,6 @@ function handleToHome() {
     color: #f17a35;
     font-weight: 600;
     .font-size(20px);
-    .text-center;
   }
 
   .back-to-home {
@@ -44,8 +43,6 @@ function handleToHome() {
     border: 1.5px solid #f17a35;
     border-radius: 15px;
     transition: .2s all;
-    .text-center;
-    .pointer;
     .font-size(14px);
     &:hover {
       color: #f17a35;

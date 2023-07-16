@@ -25,9 +25,7 @@
 </template>
 
 <script setup lang="ts">
-function handleOpenWindow() {
-  window.open()
-}
+
 </script>
 
 <style lang="less" scoped>
