@@ -14,13 +14,20 @@
           <div class="link">juejin.</div>
         </div>
       </div>
-      <div class="mt-2.5 text-center">Copyright © ursazoo. 保留所有權利</div>
+      <div class="mt-2.5 text-center">
+        <div>Copyright©ursazoo保留所有權利</div>
+        <a class="text-xs text-center" href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2023019487号</a>
+      </div>
+
       <img alt="" class="w-1/3 xs:w-full mx-auto mt-4" src="@/assets/images/shared/foot.png" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+function handleOpenWindow() {
+  window.open()
+}
 </script>
 
 <style lang="less" scoped>
