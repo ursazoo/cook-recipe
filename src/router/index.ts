@@ -1,7 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 import HomePage from '../views/HomePage.vue'
+import SearchPage from '../views/SearchPage.vue'
+import RecipePage from '../views/RecipePage.vue'
 
-const router = createRouter({
+const router  = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_PATH),
   routes: [
     {
@@ -17,12 +19,12 @@ const router = createRouter({
     {
       path: '/search',
       name: 'search',
-      component: () => import('../views/SearchPage.vue')
+      component: SearchPage
     },
     {
       path: '/recipe/:recipeName/:recipeId',
       name: 'recipe',
-      component: () => import('../views/RecipePage.vue')
+      component: RecipePage
     },
     {
       path: '/author/:author',
@@ -35,6 +37,12 @@ const router = createRouter({
       component: () => import('../views/404Page.vue')
     }
   ]
+})
+
+router.afterEach((to, from) => {
+  const toDepth = to.path.split('/').length
+  const fromDepth = from.path.split('/').length
+  to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left'
 })
 
 export default router

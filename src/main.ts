@@ -9,6 +9,8 @@ import App from './App.vue'
 import router from './router'
 
 import 'vue3-lottie/dist/style.css'
+// 引入组件样式
+import 'vant/lib/index.css';
 import '@/styles/global.less';
 
 const app = createApp(App)

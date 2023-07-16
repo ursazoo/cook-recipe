@@ -3,22 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.ellipsis-1 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ellipsis-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
@@ -39,6 +23,11 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --van-floating-bubble-size: 30px;
+  --van-floating-bubble-icon-size: 18px;
+  --van-floating-bubble-initial-gap: 18px;
+  --van-floating-bubble-background: rgba(0,0,0,.6);
 }
 
 /* semantic color variables for this project */
@@ -76,12 +65,11 @@
   margin: 0;
   box-sizing: border-box;
   font-weight: normal;
-  color: #4a4a4a;
 }
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
+  color: #4a4a4a;
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
@@ -93,13 +81,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.2s;
+.ellipsis-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  filter: blur(0.5rem);
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

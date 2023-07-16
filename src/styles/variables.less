@@ -1,21 +1,5 @@
 @textColor: #4a4a4a;
-@themeColor: #e26226;
-
-.ellipsis(@line) {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: @line;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.primary-color {
-  color: #e26226;
-}
-
-.light-primary-color {
-  color: #ff915e99;
-}
+@primaryColor: #e26226;
 
 .text-light {
   color: #bababa;
@@ -23,43 +7,6 @@
 
 .text-black {
   color: #232323;
-}
-
-
-.flex {
-  display: flex;
-}
-
-.flex(@flex) {
-  flex: @flex;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.align-top {
-  align-items: flex-start;
-}
-
-.align-end {
-  align-items: flex-end;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .font-size(@size) {

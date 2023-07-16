@@ -1,6 +1,6 @@
 <template>
 <!--  base-header-container-->
-  <div class="container max-w-full w-screen h-14 mx-auto fixed z-10 top-0 left-1/2 -translate-x-1/2 px-5 flex align-center justify-between bg-white shadow-lg xs:shadow-none">
+  <div class="container max-w-full h-14 mx-auto fixed z-10 top-0 left-1/2 -translate-x-1/2 px-5 flex align-center justify-between bg-white shadow-lg xs:shadow">
     <div class="text-center cursor-pointer" @click="handleToHome">图标</div>
     <div>
       <slot name="default"></slot>

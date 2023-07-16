@@ -1,13 +1,15 @@
 export enum EStuff {
   'INGREDIENT',
   'RECIPE',
-  'COOK_WARE'
+  'COOK_WARE',
+  'USER'
 }
 
 export const stuffNameConfig =  {
   [EStuff.INGREDIENT]: '食材',
   [EStuff.RECIPE]: '食谱',
-  [EStuff.COOK_WARE]: '炊具'
+  [EStuff.COOK_WARE]: '炊具',
+  [EStuff.USER]: '用户'
 }
 
 export enum EDifficulty {

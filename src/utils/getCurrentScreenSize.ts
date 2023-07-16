@@ -1,7 +1,7 @@
-export default function getCurrentScreenSize() {
+const getCurrentScreenSize = () => {
   const windowWidth = window.innerWidth;
 
-  const sizeMap = {
+  const sizeMap:any = {
     XS: { min: '375px', max: '766px' },
     SM: { min: '640px', max: '767px' },
     MD: { min: '768px', max: '1023px' },
@@ -22,3 +22,5 @@ export default function getCurrentScreenSize() {
     }
   });
 }
+
+export default getCurrentScreenSize;

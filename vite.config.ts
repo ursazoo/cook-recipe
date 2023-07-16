@@ -8,6 +8,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineConfig(({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd());
@@ -37,8 +38,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         resolvers: []
       }),
       Components({
-        resolvers: []
-      })
+        resolvers: [VantResolver()],
+      }),
     ],
     resolve: {
       alias: {
